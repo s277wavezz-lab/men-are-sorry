@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Men Are Sorry</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="Men Are Sorry — a space for accountability, listening, and genuine change."
+  />
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-alt: #0b1020;
+      --accent: #ff8a5c;
+      --accent-soft: rgba(255, 138, 92, 0.12);
+      --text-main: #f5f5f7;
+      --text-muted: #a0a3b1;
+      --border-subtle: rgba(255, 255, 255, 0.06);
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.6);
+      --radius-lg: 18px;
+      --radius-pill: 999px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: radial-gradient(circle at top, #161b33, #050816 55%);
+      color: var(--text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(
+        to bottom,
+        rgba(5, 8, 22, 0.9),
+        rgba(5, 8, 22, 0.72),
+        transparent
+      );
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .nav {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 16px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-size: 14px;
+    }
+
+    .logo-mark {
+      width: 30px;
+      height: 30px;
+      border-radius: 10px;
+      background: radial-gradient(circle at 30% 20%, #ffe3d6, #ff8a5c);
+      box-shadow: 0 0 22px rgba(255, 138, 92, 0.9);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .logo-mark::after {
+      content: "";
+      position: absolute;
+      inset: 6px;
+      border-radius: 8px;
+      border: 2px solid rgba(5, 8, 22, 0.55);
+      box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.35);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .nav-links a {
+      position: relative;
+      padding-bottom: 4px;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 1px;
+      background: linear-gradient(90deg, #ff8a5c, #ffd2a5);
+      transition: width 0.2s ease-out;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    main {
+      flex: 1;
+    }
+
+    .hero {
+      max-width: 1080px;
+      margin: 32px auto 0;
+      padding: 24px 18px 64px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.1fr);
+      gap: 32px;
+      align-items: center;
+    }
+
+    .hero-title {
+      font-size: clamp(2.2rem, 4vw, 3rem);
+      line-height: 1.05;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 14px;
+    }
+
+    .hero-title span {
+      background: linear-gradient(120deg, #ff8a5c, #ffd2a5);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      color: var(--text-muted);
+      max-width: 32rem;
+      font-size: 0.98rem;
+      margin-bottom: 26px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px 4px 4px;
+      border-radius: var(--radius-pill);
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--text-muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      margin-bottom: 14px;
+    }
+
+    .pill-dot {
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 20%, #ffe3d6, #ff8a5c);
+      box-shadow: 0 0 12px rgba(255, 138, 92, 0.7);
+    }
+
+    .pill-strong {
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .btn {
+      border: none;
+      cursor: pointer;
+      font: inherit;
+      padding: 10px 18px;
+      border-radius: var(--radius-pill);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.12s ease-out, box-shadow 0.12s ease-out,
+        background 0.12s ease-out, border-color 0.12s ease-out;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #ff8a5c, #ffb46a);
+      color: #1e0b06;
+      box-shadow: 0 11px 28px rgba(255, 138, 92, 0.4);
+      font-weight: 600;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 36px rgba(255, 138, 92, 0.45);
+    }
+
+    .btn-ghost {
+      background: rgba(255, 255, 255, 0.02);
+      color: var(--text-main);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(255, 255, 255, 0.04);
+      transform: translateY(-1px);
+    }
+
+    .hero-footnote {
+      font-size: 11px;
+      color: var(--text-muted);
+      max-width: 32rem;
+    }
+
+    .hero-footnote strong {
+      color: #ffe3d6;
+      font-weight: 600;
+    }
+
+    .hero-card {
+      background: radial-gradient(circle at top, #1a1c32, #050816);
+      border-radius: 22px;
+      padding: 18px 18px 20px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(255, 138, 92, 0.15), transparent),
+        radial-gradient(circle at 100% 0%, rgba(139, 92, 246, 0.16), transparent),
+        radial-gradient(circle at 100% 100%, rgba(56, 189, 248, 0.14), transparent);
+      opacity: 0.8;
+      z-index: -1;
+    }
+
+    .card-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: rgba(255, 255, 255, 0.6);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .card-label-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #10b981;
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.9);
+    }
+
+    .card-note {
+      font-size: 0.9rem;
+      color: #e5e7f3;
+      margin-bottom: 12px;
+    }
+
+    .card-note strong {
+      color: #ffedd5;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 12px;
+      margin-bottom: 12px;
+    }
+
+    .mini-card {
+      background: rgba(2, 6, 23, 0.75);
+      border-radius: 14px;
+      padding: 10px 11px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 11px;
+    }
+
+    .mini-card-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 4px;
+    }
+
+    .mini-card-body {
+      color: #cbd5f5;
+      font-size: 0.78rem;
+    }
+
+    .card-badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+      margin-bottom: 8px;
+    }
+
+    .badge {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      color: rgba(255, 255, 255, 0.7);
+      background: rgba(15, 23, 42, 0.9);
+      backdrop-filter: blur(10px);
+    }
+
+    .badge-accent {
+      background: rgba(255, 138, 92, 0.14);
+      border-color: rgba(255, 138, 92, 0.7);
+      color: #fed7aa;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 10px;
+      font-size: 11px;
+      color: rgba(226, 232, 240, 0.8);
+    }
+
+    .card-footer strong {
+      color: #fef3c7;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 10px;
+    }
+
+    .card-meter {
+      height: 4px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      overflow: hidden;
+      position: relative;
+      width: 120px;
+    }
+
+    .card-meter-fill {
+      position: absolute;
+      inset: 0;
+      width: 80%;
+      background: linear-gradient(90deg, #10b981, #22c55e, #fde68a);
+      box-shadow: 0 0 12px rgba(34, 197, 94, 0.7);
+    }
+
+    .section {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 18px 56px;
+    }
+
+    .section-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .section-title {
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: rgba(148, 163, 184, 0.95);
+    }
+
+    .section-subtitle {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      max-width: 28rem;
+    }
+
+    .grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .card {
+      background: var(--bg-alt);
+      border-radius: var(--radius-lg);
+      padding: 16px 16px 18px;
+      border: 1px solid var(--border-subtle);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+    }
+
+    .card h3 {
+      font-size: 0.98rem;
+      margin-bottom: 4px;
+    }
+
+    .card h4 {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      margin-bottom: 6px;
+      color: rgba(148, 163, 184, 0.9);
+    }
+
+    .card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .card ul {
+      margin-top: 8px;
+      padding-left: 18px;
+      color: var(--text-muted);
+      font-size: 0.86rem;
+    }
+
+    .card li + li {
+      margin-top: 4px;
+    }
+
+    .quote {
+      border-left: 2px solid rgba(255, 138, 92, 0.6);
+      padding-left: 12px;
+      margin-top: 8px;
+      font-size: 0.9rem;
+      color: #e5e7eb;
+      font-style: italic;
+    }
+
+    .cta {
+      background: radial-gradient(circle at top, #1f2937, #050816);
+      border-radius: 24px;
+      padding: 20px 18px 22px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .cta-text {
+      max-width: 28rem;
+    }
+
+    .cta-text h2 {
+      font-size: 1.25rem;
+      margin-bottom: 6px;
+    }
+
+    .cta-text p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .cta-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    form {
+      margin-top: 10px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .form-row {
+      display: grid;
+      gap: 8px;
+    }
+
+    label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    input,
+    textarea {
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: 12px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      padding: 8px 10px;
+      color: var(--text-main);
+      font: inherit;
+      resize: vertical;
+      min-height: 38px;
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #ff8a5c;
+      box-shadow: 0 0 0 1px rgba(255, 138, 92, 0.6);
+    }
+
+    textarea {
+      min-height: 80px;
+    }
+
+    .form-hint {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+      font-size: 0.78rem;
+    }
+
+    .pill-small {
+      padding: 4px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      color: rgba(209, 213, 219, 0.9);
+      background: rgba(15, 23, 42, 0.8);
+    }
+
+    footer {
+      border-top: 1px solid var(--border-subtle);
+      padding: 16px 18px 22px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    .footer-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 12px;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      font-size: 0.78rem;
+    }
+
+    .footer-links a:hover {
+      color: #e5e7eb;
+    }
+
+    /* Responsive */
+    @media (max-width: 840px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+        margin-top: 18px;
+      }
+
+      .hero-card {
+        order: -1;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .grid-3 {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .grid-2 {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero {
+        padding-bottom: 42px;
+      }
+
+      .section {
+        padding-bottom: 40px;
+      }
+
+      .cta {
+        padding: 16px 14px 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <nav class="nav">
+        <div class="logo">
+          <div class="logo-mark"></div>
+          <span>Men Are Sorry</span>
+        </div>
+        <div class="nav-links">
+          <a href="#why">Why this exists</a>
+          <a href="#promises">Our promises</a>
+          <a href="#stories">Stories</a>
+          <a href="#take-action">Take action</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero">
+        <div>
+          <div class="pill">
+            <span class="pill-dot"></span>
+            <span class="pill-strong">Accountability</span>
+            <span>over defensiveness</span>
+          </div>
+          <h1 class="hero-title">
+            Men Are <span>Sorry</span> — and committed to doing better.
+          </h1>
+          <p class="hero-subtitle">
+            This is not about performative apologies. It’s about listening,
+            owning harm, unlearning harmful behavior, and showing up differently
+            — consistently.
+          </p>
+
+          <div class="hero-actions">
+            <button class="btn btn-primary" onclick="scrollToSection('take-action')">
+              Make a commitment
+            </button>
+            <button class="btn btn-ghost" onclick="scrollToSection('stories')">
+              Read real experiences
+            </button>
+          </div>
+
+          <p class="hero-footnote">
+            <strong>Note:</strong> This space centers the people harmed by
+            sexism and misogyny. Men are here to listen first, not dominate the
+            conversation.
+          </p>
+        </div>
+
+        <aside class="hero-card" aria-label="Quick overview">
+          <div class="card-label">
+            <span class="card-label-dot"></span>
+            live checklist · becoming safer to be around
+          </div>
+          <p class="card-note">
+            <strong>“Sorry” is the beginning, not the end.</strong><br />
+            These are concrete ways to turn apology into daily practice.
+          </p>
+
+          <div class="card-grid">
+            <div class="mini-card">
+              <div class="mini-card-title">Step 1 · Listen</div>
+              <p class="mini-card-body">
+                Believe people when they tell you what hurt them. No
+                interruptions, no “not all men”, no debate.
+              </p>
+            </div>
+            <div class="mini-card">
+              <div class="mini-card-title">Step 2 · Own it</div>
+              <p class="mini-card-body">
+                Say what you did, why it was harmful, and what you’ll change.
+                No excuses, no blame-shifting.
+              </p>
+            </div>
+            <div class="mini-card">
+              <div class="mini-card-title">Step 3 · Learn</div>
+              <p class="mini-card-body">
+                Do the work yourself — books, therapy, conversations, reflection
+                — instead of asking others to teach you.
+              </p>
+            </div>
+            <div class="mini-card">
+              <div class="mini-card-title">Step 4 · Repeat</div>
+              <p class="mini-card-body">
+                Change is measured in consistent behavior over time, not one
+                perfect apology.
+              </p>
+            </div>
+          </div>
+
+          <div class="card-badge-row">
+            <span class="badge badge-accent">Listen first</span>
+            <span class="badge">Believe survivors</span>
+            <span class="badge">Use your privilege</span>
+            <span class="badge">Stay uncomfortable</span>
+          </div>
+
+          <div class="card-footer">
+            <div>
+              <strong>practice level</strong>
+              <div>always in progress</div>
+            </div>
+            <div class="card-meter">
+              <div class="card-meter-fill"></div>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <!-- WHY THIS EXISTS -->
+      <section class="section" id="why">
+        <div class="section-header">
+          <div>
+            <div class="section-title">Why this exists</div>
+          </div>
+          <p class="section-subtitle">
+            “Men Are Sorry” is a statement of accountability, not a slogan.
+            It’s a reminder that apologies are hollow if they’re not backed by
+            listening, repair, and changed behavior.
+          </p>
+        </div>
+
+        <div class="grid grid-3">
+          <article class="card">
+            <h4>The reality</h4>
+            <h3>Harm is everywhere, not just headlines</h3>
+            <p>
+              Gendered harm isn’t only the extreme stories that go viral. It’s
+              the “jokes”, the pressure, the dismissals, the fear of not being
+              believed, and the small daily cuts that pile up.
+            </p>
+            <p class="quote">
+              “It’s not one big moment. It’s the constant calculation of what
+              feels safe.”
+            </p>
+          </article>
+
+          <article class="card">
+            <h4>The gap</h4>
+            <h3>“I’m a good guy” vs. real safety</h3>
+            <p>
+              Many men see themselves as “good” while staying silent, laughing
+              along, or minimizing harm. Intent matters less than impact — and
+              impact is what we’re responsible for.
+            </p>
+            <ul>
+              <li>Not speaking up is still a choice.</li>
+              <li>Defensiveness blocks growth.</li>
+              <li>Comfort is not more important than safety.</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h4>The invitation</h4>
+            <h3>Move from guilt to responsibility</h3>
+            <p>
+              Guilt that never turns into action just recenters you. This space
+              asks: What will you <em>do</em> differently — online, in private,
+              with friends, at work, and in relationships?
+            </p>
+            <p class="quote">
+              “Being sorry isn’t who you are. It’s what you choose to do next.”
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- PROMISES -->
+      <section class="section" id="promises">
+        <div class="section-header">
+          <div>
+            <div class="section-title">Our promises</div>
+          </div>
+          <p class="section-subtitle">
+            These are the kinds of commitments men can make and remake daily.
+            They’re not rules you’ll nail perfectly, but directions you keep
+            steering toward — especially when you mess up.
+          </p>
+        </div>
+
+        <div class="grid grid-2">
+          <article class="card">
+            <h4>Listening</h4>
+            <h3>I won’t argue with someone else’s experience</h3>
+            <ul>
+              <li>I will listen fully before responding.</li>
+              <li>I won’t make it about my feelings first.</li>
+              <li>
+                I will believe people when they describe what felt unsafe or
+                painful.
+              </li>
+              <li>I’ll ask what repair is actually helpful — and respect no.</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h4>Accountability</h4>
+            <h3>I will name the harm without excuses</h3>
+            <ul>
+              <li>
+                I will practice saying, “I did this. It was harmful because…”
+              </li>
+              <li>I won’t blame alcohol, stress, or “miscommunication”.</li>
+              <li>
+                I’ll accept that I don’t get to control whether my apology is
+                accepted.
+              </li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h4>Action</h4>
+            <h3>I will act when other men cause harm</h3>
+            <ul>
+              <li>I’ll challenge sexist “jokes”, even when it’s awkward.</li>
+              <li>I’ll check in with people who might have been harmed.</li>
+              <li>
+                I’ll bring this up with friends, family, and coworkers — not
+                just strangers online.
+              </li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h4>Learning</h4>
+            <h3>I will keep learning without demanding free labor</h3>
+            <ul>
+              <li>
+                I’ll seek out books, podcasts, and workshops on gender and
+                power.
+              </li>
+              <li>
+                I won’t expect the people hurt to educate me step by step.
+              </li>
+              <li>I’ll stay open to feedback, even when it stings.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <!-- STORIES -->
+      <section class="section" id="stories">
+        <div class="section-header">
+          <div>
+            <div class="section-title">Stories & reflections</div>
+          </div>
+          <p class="section-subtitle">
+            These short, anonymized reflections show what apology plus change
+            can start to look like. They’re not templates — they’re examples of
+            men taking responsibility seriously.
+          </p>
+        </div>
+
+        <div class="grid grid-3">
+          <article class="card">
+            <h4>Reflection</h4>
+            <h3>“Not the funny one anymore”</h3>
+            <p>
+              “I used to be the guy who ‘roasted’ everyone. A partner told me
+              she dreaded group hangs because I always turned the spotlight on
+              her. I stopped calling it ‘just jokes’ and started asking myself
+              why I needed to make people small to feel interesting.”
+            </p>
+          </article>
+
+          <article class="card">
+            <h4>Repair</h4>
+            <h3>“I apologized the long way”</h3>
+            <p>
+              “Instead of one big emotional apology, I asked what would actually
+              help my ex feel safer. That meant respecting distance, paying for
+              therapy I’d promised years ago, and not trying to prove I’d
+              changed — just showing it quietly.”
+            </p>
+          </article>
+
+          <article class="card">
+            <h4>Calling in</h4>
+            <h3>“It started in the group chat”</h3>
+            <p>
+              “I called out a friend’s ‘joke’ in our guys’ group chat. It was
+              weirdly quiet. Later two of them messaged that they’d been
+              uncomfortable for years but didn’t want to be ‘the serious one’.
+              Turns out a lot of us were waiting for someone else to speak
+              first.”
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- TAKE ACTION -->
+      <section class="section" id="take-action">
+        <div class="section-header">
+          <div>
+            <div class="section-title">Take action today</div>
+          </div>
+          <p class="section-subtitle">
+            You don’t need a perfect script or a viral post. You need a first
+            step you’re actually going to take — and the courage to stay with
+            the discomfort instead of running from it.
+          </p>
+        </div>
+
+        <div class="cta">
+          <div class="cta-text">
+            <h2>Write one concrete commitment.</h2>
+            <p>
+              Use this space to be specific. “I’ll be better” is vague. “I will
+              interrupt sexist jokes in my friend group, even if I’m the only
+              one who does” is real.
+            </p>
+            <div class="pill-row">
+              <span class="pill-small">Speak up in my group chats</span>
+              <span class="pill-small">Check in with someone I hurt</span>
+              <span class="pill-small">Book therapy or a support group</span>
+              <span class="pill-small">Read one book & discuss it with men</span>
+            </div>
+          </div>
+
+          <div class="cta-actions">
+            <form
+              onsubmit="event.preventDefault();saveCommitment();"
+              aria-label="Commitment form"
+            >
+              <div class="form-row">
+                <label for="name">Name or initials (optional)</label>
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  placeholder="e.g. J, or leave blank"
+                />
+              </div>
+
+              <div class="form-row">
+                <label for="commitment">My commitment</label>
+                <textarea
+                  id="commitment"
+                  name="commitment"
+                  placeholder="Example: I will listen fully before responding defensively when someone tells me I’ve crossed a line."
+                ></textarea>
+                <p class="form-hint">
+                  This stays in your browser only. It’s a private promise you
+                  can revisit later.
+                </p>
+              </div>
+
+              <button class="btn btn-primary" type="submit">
+                Save my commitment (local only)
+              </button>
+              <button
+                class="btn btn-ghost"
+                type="button"
+                onclick="clearCommitment()"
+              >
+                Clear saved commitment
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <div>
+          © <span id="year"></span> Men Are Sorry · Built as a space for
+          reflection, not perfection.
+        </div>
+        <div class="footer-links">
+          <a href="#why">About</a>
+          <a href="#promises">Promises</a>
+          <a href="#take-action">Take action</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Smooth scroll
+    function scrollToSection(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+
+    // Local commitment storage
+    const STORAGE_KEY = "men-are-sorry-commitment";
+
+    function saveCommitment() {
+      const name = document.getElementById("name").value.trim();
+      const commitment = document.getElementById("commitment").value.trim();
+
+      if (!commitment) {
+        alert("Write at least one concrete commitment before saving.");
+        return;
+      }
+
+      const payload = { name, commitment, savedAt: new Date().toISOString() };
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+        alert("Your commitment has been saved in this browser.");
+      } catch (e) {
+        alert("Could not save locally (storage might be disabled).");
+      }
+    }
+
+    function loadCommitment() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (!saved) return;
+        const data = JSON.parse(saved);
+        document.getElementById("name").value = data.name || "";
+        document.getElementById("commitment").value = data.commitment || "";
+      } catch (e) {
+        // ignore
+      }
+    }
+
+    function clearCommitment() {
+      if (!confirm("Clear your saved commitment from this browser?")) return;
+      try {
+        localStorage.removeItem(STORAGE_KEY);
+      } catch (e) {
+        // ignore
+      }
+      document.getElementById("name").value = "";
+      document.getElementById("commitment").value = "";
+    }
+
+    // Set year + load saved data
+    document.getElementById("year").textContent =
+      new Date().getFullYear().toString();
+    loadCommitment();
+  </script>
+</body>
+</html> 
