@@ -983,7 +983,66 @@
             Your browser does not support the video tag.
           </video>
         </div>
-      </section>      
+      </section>
+
+    <!-- NOMINEE & AWARDS -->
+    <div id="nominee-awards">
+      <div class="section-header">
+        <div>
+          <div class="section-title">Nominee &amp; Awards</div>
+        </div>
+        <p class="section-subtitle">
+          Add up to four images here to showcase nominations and awards.
+        </p>
+      </div>
+
+      <div class="awards-grid">
+        <!-- Image 1 -->
+        <div class="award-slot">
+          <img src="Images/award-1.jpg" alt="Award or nomination 1" />
+        </div>
+        <!-- Image 2 -->
+        <div class="award-slot">
+          <img src="Images/award-2.jpg" alt="Award or nomination 2" />
+        </div>
+        <!-- Image 3 -->
+        <div class="award-slot">
+          <img src="Images/award-3.jpg" alt="Award or nomination 3" />
+        </div>
+        <!-- Image 4 -->
+        <div class="award-slot">
+          <img src="Images/award-4.jpg" alt="Award or nomination 4" />
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 32px;">
+        <button id="reveal-winner-btn" class="reveal-btn">Reveal the Winner</button>
+      </div>
+
+      <div id="winner-section" class="winner-section hidden">
+        <h3 class="winner-title">Winner</h3>
+        <div class="winner-slot">
+          <!-- Change the src below to the same image as your chosen winner -->
+          <img id="winner-image" src="Images/award-1.jpg" alt="Winning image" />
+          <div class="winner-badge">Winner</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function () {
+      var btn = document.getElementById('reveal-winner-btn');
+      var winnerSection = document.getElementById('winner-section');
+      if (!btn || !winnerSection) return;
+
+      btn.addEventListener('click', function () {
+        winnerSection.classList.remove('hidden');
+        btn.disabled = true;
+        btn.textContent = 'Winner Revealed';
+      });
+    })();
+  </script>
                
       <!-- TAKE ACTION -->
       <section class="section" id="take-action">
@@ -1134,6 +1193,7 @@
 </body>
 
 </html> 
+
 
 
 
