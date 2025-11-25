@@ -1101,7 +1101,66 @@
       });
     })();
   </script>
-               
+
+  </div>
+       </section>
+
+      </div>
+      <p class="section-subtitle">
+          <div style="max-width: 800px; margin: 0 auto 20px; font-weight: 700; line-height: 1.7;">
+          iconic pics & tiks
+        </p>
+      </div>
+
+      <div class="awards-grid">
+        <!-- Image 9 -->
+        <div class="award-slot">
+          <img src="imagesaward-9.jpg" alt="Award or nomination 1" />
+        </div>
+        <!-- Image 10 -->
+        <div class="award-slot">
+          <img src="imagesaward-10.jpg" alt="Award or nomination 2" />
+        </div>
+        <!-- Video 1 -->
+        <div class="award-slot">
+         <source src="videoawards-web1.mp4" type="video/mp4" alt="Award or nomination 3" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <!-- Image 11 -->
+        <div class="award-slot">
+          <img src="imagesaward-11.jpg" alt="Award or nomination 4" />
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 32px;">
+        <button id="reveal-winner-btn" class="reveal-btn">Reveal the Winner</button>
+      </div>
+
+      <div id="winner-section" class="winner-section hidden">
+        <h3 class="winner-title">Winner</h3>
+        <div class="winner-slot">
+          <!-- Change the src below to the same image as your chosen winner -->
+          <img id="winner-image" src="imagesaward-11.jpg" alt="Winning image" />
+          
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function () {
+      var btn = document.getElementById('reveal-winner-btn');
+      var winnerSection = document.getElementById('winner-section');
+      if (!btn || !winnerSection) return;
+
+      btn.addEventListener('click', function () {
+        winnerSection.classList.remove('hidden');
+        btn.disabled = true;
+        btn.textContent = 'Winner Revealed';
+      });
+    })();
+  </script>
       <!-- TAKE ACTION -->
       <section class="section" id="take-action">
         <div class="section-header">
@@ -1251,6 +1310,7 @@
 </body>
 
 </html> 
+
 
 
 
