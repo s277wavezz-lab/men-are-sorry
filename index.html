@@ -1044,6 +1044,60 @@
       });
     })();
   </script>
+
+      <p class="section-subtitle">
+          <div style="max-width: 800px; margin: 0 auto 20px; font-weight: 700; line-height: 1.7;">
+          someone call the police shes criminal fit
+        </p>
+      </div>
+
+      <div class="awards-grid">
+        <!-- Image 1 -->
+        <div class="award-slot">
+          <img src="Imagesaward-5.jpg" alt="Award or nomination 1" />
+        </div>
+        <!-- Image 2 -->
+        <div class="award-slot">
+          <img src="Imagesaward-6.jpg" alt="Award or nomination 2" />
+        </div>
+        <!-- Image 3 -->
+        <div class="award-slot">
+          <img src="Imagesaward-7.jpg" alt="Award or nomination 3" />
+        </div>
+        <!-- Image 4 -->
+        <div class="award-slot">
+          <img src="Imagesaward-8.jpg" alt="Award or nomination 4" />
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 32px;">
+        <button id="reveal-winner-btn" class="reveal-btn">Reveal the Winner</button>
+      </div>
+
+      <div id="winner-section" class="winner-section hidden">
+        <h3 class="winner-title">Winner</h3>
+        <div class="winner-slot">
+          <!-- Change the src below to the same image as your chosen winner -->
+          <img id="winner-image" src="Imagesaward-6.jpg" alt="Winning image" />
+          <div class="winner-badge">Winner</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function () {
+      var btn = document.getElementById('reveal-winner-btn');
+      var winnerSection = document.getElementById('winner-section');
+      if (!btn || !winnerSection) return;
+
+      btn.addEventListener('click', function () {
+        winnerSection.classList.remove('hidden');
+        btn.disabled = true;
+        btn.textContent = 'Winner Revealed';
+      });
+    })();
+  </script>
                
       <!-- TAKE ACTION -->
       <section class="section" id="take-action">
@@ -1194,6 +1248,7 @@
 </body>
 
 </html> 
+
 
 
 
